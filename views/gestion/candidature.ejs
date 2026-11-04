@@ -10,6 +10,7 @@
       <dt>Date de naissance</dt><dd><%= date(d.date_naissance) || '—' %></dd>
       <dt>Adresse</dt><dd><%= d.adresse || '—' %></dd>
     </dl>
+    <% if (d.message) { %><h3>Message du candidat</h3><p class="msgcand"><%= d.message %></p><% } %>
     <h3>Pièces jointes</h3>
     <ul class="pj">
       <li><a href="/candidatures/<%= d.id %>/fichier/cv">📄 CV</a></li>

@@ -1,0 +1,19 @@
+<%- include('../partials/header') %>
+<h1 class="ptitle">Candidats</h1>
+<p class="sub"><%= candidats.length %> personne<%= candidats.length > 1 ? 's' : '' %> inscrite<%= candidats.length > 1 ? 's' : '' %> sur la plateforme.</p>
+<% if (!candidats.length) { %><p class="empty">Aucun candidat inscrit pour le moment.</p><% } else { %>
+<div class="tablewrap"><table>
+  <thead><tr><th>Nom</th><th>Coordonnées</th><th>Adresse</th><th>Inscrit le</th><th>Candidatures</th><th></th></tr></thead>
+  <tbody>
+  <% candidats.forEach(c => { %>
+    <tr><td><b><%= c.prenom %> <%= c.nom %></b></td>
+      <td><%= c.email %><br><small><%= c.telephone || '—' %></small></td>
+      <td><%= c.adresse || '—' %></td>
+      <td><%= date(c.date_creation) %></td>
+      <td><%= c.nb %><% if (c.nb_ok) { %> <span class="badge ok"><%= c.nb_ok %> validée<%= c.nb_ok > 1 ? 's' : '' %></span><% } %></td>
+      <td><a href="/messages/<%= c.id %>">Écrire</a></td></tr>
+  <% }) %>
+  </tbody>
+</table></div>
+<% } %>
+<%- include('../partials/footer') %>

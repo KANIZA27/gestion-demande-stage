@@ -54,11 +54,26 @@ describe("Candidatures et suivi", () => {
   test("un stagiaire dépose une candidature avec ses pièces jointes", async () => {
     const agent = await connexion("nadjati@demo.yt", "Stagiaire2026!");
     const res = await agent.post("/offres/1/candidater")
+      .field("message", "Je suis motivée par le développement web.")
       .attach("cv", PDF, "cv.pdf").attach("lettre_motivation", PDF, "lettre.pdf");
     expect(res.status).toBe(302);
     const suivi = await agent.get("/mes-candidatures");
-    expect(suivi.text).toContain("Développeur·se web junior");
+    expect(suivi.text).toContain("Stage en développement web à Mamoudzou");
     expect(suivi.text).toContain("En attente");
+    // Le gestionnaire voit le message du candidat
+    const db = require("../config/db");
+    const d = await db.get("SELECT d.id FROM demandes_stage d JOIN utilisateurs u ON u.id = d.id_utilisateur WHERE u.email = 'nadjati@demo.yt' AND d.id_offre = 1");
+    const gest = await connexion("gestion@demo.yt", "Gestion2026!");
+    expect((await gest.get(`/gestion/candidatures/${d.id}`)).text).toContain("Je suis motivée par le développement web.");
+  });
+
+  test("refuse une candidature après la date limite", async () => {
+    const db = require("../config/db");
+    await db.run("UPDATE offres_stage SET date_limite = '2020-01-01' WHERE id = 2");
+    const agent = await connexion("ali@demo.yt", "Stagiaire2026!");
+    const res = await agent.post("/offres/2/candidater").attach("cv", PDF, "cv.pdf").attach("lettre_motivation", PDF, "lettre.pdf");
+    expect(res.status).toBe(400);
+    expect(res.text).toContain("date limite");
   });
 
   test("refuse un fichier qui n'est pas un PDF", async () => {
@@ -86,6 +101,31 @@ describe("Candidatures et suivi", () => {
     const agent = await connexion("ali@demo.yt", "Stagiaire2026!");
     const res = await agent.get("/candidatures/1/fichier/cv"); // candidature de Fatima
     expect(res.status).toBe(403);
+  });
+});
+
+describe("Rubriques Candidats, Agents et Documents", () => {
+  test("le gestionnaire voit les candidats, les agents et tous les documents", async () => {
+    const gest = await connexion("gestion@demo.yt", "Gestion2026!");
+    expect((await gest.get("/candidats")).text).toContain("ATTOUMANI");
+    expect((await gest.get("/agents")).text).toContain("MADI");
+    expect((await gest.get("/documents")).text).toContain("Fatima ATTOUMANI");
+  });
+
+  test("un stagiaire ne voit que ses propres documents et n'a pas accès aux candidats", async () => {
+    const agent = await connexion("ali@demo.yt", "Stagiaire2026!");
+    const docs = await agent.get("/documents");
+    expect(docs.status).toBe(200);
+    expect(docs.text).not.toContain("ATTOUMANI");
+    expect((await agent.get("/candidats")).status).toBe(403);
+  });
+
+  test("un visiteur qui clique sur Postuler est envoyé vers la connexion, puis revient à l'offre", async () => {
+    const agent = request.agent(app);
+    const r1 = await agent.get("/offres/3/candidater");
+    expect(r1.headers.location).toBe("/connexion");
+    const r2 = await agent.post("/connexion").type("form").send({ email: "fatima@demo.yt", mot_de_passe: "Stagiaire2026!" });
+    expect(r2.headers.location).toBe("/offres/3/candidater");
   });
 });
 

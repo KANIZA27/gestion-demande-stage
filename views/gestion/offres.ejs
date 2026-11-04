@@ -9,7 +9,7 @@
   <% offres.forEach(o => { %>
     <tr>
       <td><b><%= o.titre %></b></td><td><%= o.departement %></td>
-      <td><%= date(o.date_debut) %> → <%= date(o.date_fin) %></td><td><%= o.places_disponibles %></td><td><%= o.nb_candidatures %></td>
+      <td><%= date(o.date_debut) %> → <%= date(o.date_fin) %><br><small>Date limite : <%= date(o.date_limite) %></small></td><td><%= o.places_disponibles %></td><td><%= o.nb_candidatures %></td>
       <td class="actions">
         <a href="/gestion/offres/<%= o.id %>/modifier">Modifier</a>
         <form method="post" action="/gestion/offres/<%= o.id %>/supprimer" class="inline" onsubmit="return confirm('Supprimer cette offre et ses candidatures ?')"><button class="linkbtn danger">Supprimer</button></form>

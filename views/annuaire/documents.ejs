@@ -1,0 +1,21 @@
+<%- include('../partials/header') %>
+<h1 class="ptitle">Documents</h1>
+<p class="sub"><%= user.role === 'stagiaire' ? 'Les documents que vous avez envoyés avec vos candidatures.' : 'Toutes les pièces jointes reçues avec les candidatures.' %></p>
+<% if (!demandes.length) { %><p class="empty">Aucun document pour le moment.</p><% } else { %>
+<div class="tablewrap"><table>
+  <thead><tr><% if (user.role !== 'stagiaire') { %><th>Candidat(e)</th><% } %><th>Offre</th><th>Envoyé le</th><th>Pièces jointes</th><th>Statut</th></tr></thead>
+  <tbody>
+  <% demandes.forEach(d => { %>
+    <tr><% if (user.role !== 'stagiaire') { %><td><b><%= d.prenom %> <%= d.nom %></b></td><% } %>
+      <td><%= d.titre %></td><td><%= date(d.date_soumission) %></td>
+      <td class="pjs">
+        <a href="/candidatures/<%= d.id %>/fichier/cv">CV</a>
+        <a href="/candidatures/<%= d.id %>/fichier/lettre_motivation">Lettre</a>
+        <% if (d.convention) { %><a href="/candidatures/<%= d.id %>/fichier/convention">Convention</a><% } %>
+      </td>
+      <td><%- badge(d.statut) %></td></tr>
+  <% }) %>
+  </tbody>
+</table></div>
+<% } %>
+<%- include('../partials/footer') %>

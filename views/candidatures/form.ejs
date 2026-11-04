@@ -1,15 +1,20 @@
 <%- include('../partials/header') %>
 <p class="crumb"><a href="/offres/<%= o.id %>">← Retour à l'offre</a></p>
-<section class="panel narrow wide">
-  <span class="dept"><%= o.departement %></span>
-  <h1>Candidater : <%= o.titre %></h1>
-  <p class="sub">Vos informations personnelles sont celles de <a href="/profil">votre profil</a>. Ajoutez vos documents au format PDF (5 Mo maximum chacun).</p>
-  <% if (erreur) { %><p class="alert err"><%= erreur %></p><% } %>
-  <form method="post" action="/offres/<%= o.id %>/candidater" enctype="multipart/form-data" class="form">
-    <label class="file">CV * <input type="file" name="cv" accept="application/pdf" required></label>
-    <label class="file">Lettre de motivation * <input type="file" name="lettre_motivation" accept="application/pdf" required></label>
-    <label class="file">Convention de stage <small>(si vous l'avez déjà)</small><input type="file" name="convention" accept="application/pdf"></label>
-    <button class="btn" type="submit">Envoyer ma candidature</button>
+<section class="panel wide">
+  <h1>Postuler à l'offre : <%= o.titre %></h1>
+  <p class="text" style="margin-top:8px"><%= o.description %></p>
+  <p style="margin-top:8px"><b>Date limite :</b> <%= date(o.date_limite) %></p>
+  <% if (erreur) { %><p class="alert err" style="margin-top:14px"><%= erreur %></p><% } %>
+  <form method="post" action="/offres/<%= o.id %>/candidater" enctype="multipart/form-data" class="form" style="margin-top:16px">
+    <label>Message (optionnel) :<textarea name="message" rows="4" maxlength="2000" placeholder="Votre message..."></textarea></label>
+    <fieldset class="docs-set">
+      <legend>Joindre vos documents (PDF, 5 Mo maximum chacun) :</legend>
+      <label class="file">CV * <input type="file" name="cv" accept="application/pdf" required></label>
+      <label class="file">Lettre de motivation * <input type="file" name="lettre_motivation" accept="application/pdf" required></label>
+      <label class="file">Convention de stage <small>(si vous l'avez déjà)</small><input type="file" name="convention" accept="application/pdf"></label>
+    </fieldset>
+    <p class="small" style="margin:0">Vos coordonnées sont reprises de <a href="/profil">votre profil</a>.</p>
+    <div><button class="btn" type="submit">Envoyer ma candidature</button></div>
   </form>
 </section>
 <%- include('../partials/footer') %>

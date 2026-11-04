@@ -1,23 +1,15 @@
 <%- include('partials/header') %>
-<section class="hero">
-  <div>
-    <span class="eyebrow">Conseil Départemental de Mayotte</span>
-    <h1>Votre demande de stage, <span>entièrement en ligne</span></h1>
-    <p class="lead">Consultez les offres de stage, déposez votre candidature avec vos documents, et suivez son avancement en temps réel. Plus besoin de vous déplacer avec un dossier papier.</p>
-    <div class="row">
-      <a href="/offres" class="btn">Voir les offres de stage</a>
-      <% if (!user) { %><a href="/inscription" class="btn ghost">Créer mon compte</a><% } %>
-    </div>
-  </div>
-  <ol class="steps">
-    <li><b>1</b><span>Je crée mon compte</span></li>
-    <li><b>2</b><span>Je choisis une offre et j'envoie mon CV, ma lettre et ma convention</span></li>
-    <li><b>3</b><span>Je suis l'état de ma demande et je reçois les réponses</span></li>
-  </ol>
+<h1 class="centre">Bienvenue sur notre plateforme d'offres des stages</h1>
+<section class="bloc">
+  <h2>À propos de notre plateforme</h2>
+  <p>Cette plateforme permet de consulter les offres de stage du Conseil Départemental de Mayotte, de postuler en ligne avec son CV, sa lettre de motivation et sa convention de stage, puis de suivre l'état de sa demande. Elle s'adresse principalement aux étudiants et aux jeunes diplômés.</p>
+  <% if (!user) { %><p class="row"><a class="btn" href="/inscription">Créer mon compte</a> <a href="/connexion">J'ai déjà un compte</a></p><% } %>
 </section>
-<section class="cards3">
-  <div class="card"><h3>Pour les stagiaires</h3><p>Une seule plateforme pour candidater, suivre ses demandes et échanger avec le service.</p></div>
-  <div class="card"><h3>Pour les gestionnaires</h3><p>Publication des offres, traitement des candidatures et notification automatique des candidats.</p></div>
-  <div class="card"><h3>Pour l'administration</h3><p>Gestion des comptes et des rôles pour superviser l'ensemble du processus.</p></div>
+<section class="bloc">
+  <h2>Les offres à consulter</h2>
+  <% if (!offres.length) { %><p class="empty">Aucune offre pour le moment.</p><% } %>
+  <div class="offres">
+    <% offres.forEach(o => { %><%- include('partials/offre-carte', { o }) %><% }) %>
+  </div>
 </section>
 <%- include('partials/footer') %>

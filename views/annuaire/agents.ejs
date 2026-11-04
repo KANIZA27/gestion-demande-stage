@@ -1,0 +1,15 @@
+<%- include('../partials/header') %>
+<div class="headrow">
+  <div><h1 class="ptitle">Agents</h1><p class="sub">Les agents du Département qui gèrent les offres et les candidatures.</p></div>
+  <% if (user.role === 'admin') { %><a class="btn sm" href="/admin/utilisateurs">Gérer les comptes et les rôles</a><% } %>
+</div>
+<div class="tablewrap"><table>
+  <thead><tr><th>Nom</th><th>E-mail</th><th>Téléphone</th><th>Rôle</th></tr></thead>
+  <tbody>
+  <% agents.forEach(g => { %>
+    <tr><td><b><%= g.prenom %> <%= g.nom %></b><% if (g.id === user.id) { %> <small>(vous)</small><% } %></td><td><%= g.email %></td><td><%= g.telephone || '—' %></td>
+      <td><span class="role"><%= g.role === 'admin' ? 'administrateur' : g.role %></span></td></tr>
+  <% }) %>
+  </tbody>
+</table></div>
+<%- include('../partials/footer') %>

@@ -23,7 +23,9 @@ CREATE TABLE offres_stage (
   departement VARCHAR(100) NOT NULL,
   date_debut DATE,
   date_fin DATE,
-  places_disponibles INT NOT NULL DEFAULT 1
+  places_disponibles INT NOT NULL DEFAULT 1,
+  date_publication DATE DEFAULT (CURRENT_DATE),
+  date_limite DATE
 );
 
 CREATE TABLE demandes_stage (
@@ -33,6 +35,7 @@ CREATE TABLE demandes_stage (
   cv VARCHAR(255) NOT NULL,
   lettre_motivation VARCHAR(255) NOT NULL,
   convention VARCHAR(255),
+  message TEXT,
   statut ENUM('en attente','validée','refusée') NOT NULL DEFAULT 'en attente',
   date_soumission TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   UNIQUE (id_utilisateur, id_offre),

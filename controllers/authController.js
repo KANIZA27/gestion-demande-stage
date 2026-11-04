@@ -16,9 +16,10 @@ module.exports = {
     if (!u || !bcrypt.compareSync(mdp, u.mot_de_passe)) {
       return res.status(401).render("auth/connexion", { titre: "Connexion", erreur: "E-mail ou mot de passe incorrect.", email });
     }
+    const retour = typeof req.session.retour === "string" && req.session.retour.startsWith("/") && !req.session.retour.startsWith("//") ? req.session.retour : null;
     req.session.regenerate(() => {
       req.session.user = { id: u.id, nom: u.nom, prenom: u.prenom, email: u.email, role: u.role };
-      res.redirect(u.role === "stagiaire" ? "/mes-candidatures" : "/gestion");
+      res.redirect(retour || (u.role === "stagiaire" ? "/mes-candidatures" : "/gestion"));
     });
   },
 

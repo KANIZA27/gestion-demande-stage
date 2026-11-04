@@ -1,30 +1,34 @@
 <!doctype html>
 <html lang="fr"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title><%= titre %> — Stages au Département</title>
+<title><%= titre %> — Plateforme d'offres de stages</title>
 <link rel="stylesheet" href="/css/style.css">
 </head><body>
-<header class="top"><div class="wrap bar">
-  <a href="/" class="logo">Stages<span>976</span></a>
-  <nav>
-    <a href="/offres" class="<%= chemin.startsWith('/offres') ? 'on' : '' %>">Offres</a>
-    <% if (!user) { %>
-      <a href="/connexion">Connexion</a>
-      <a href="/inscription" class="cta">Créer un compte</a>
-    <% } else { %>
-      <% if (user.role === 'stagiaire') { %><a href="/mes-candidatures" class="<%= chemin === '/mes-candidatures' ? 'on' : '' %>">Mes candidatures</a><% } %>
-      <% if (user.role !== 'stagiaire') { %>
-        <a href="/gestion" class="<%= chemin === '/gestion' ? 'on' : '' %>">Tableau de bord</a>
-        <a href="/gestion/candidatures" class="<%= chemin.startsWith('/gestion/candidatures') ? 'on' : '' %>">Candidatures</a>
-        <a href="/gestion/offres" class="<%= chemin.startsWith('/gestion/offres') ? 'on' : '' %>">Gérer les offres</a>
-      <% } %>
-      <% if (user.role === 'admin') { %><a href="/admin/utilisateurs" class="<%= chemin.startsWith('/admin') ? 'on' : '' %>">Utilisateurs</a><% } %>
-      <a href="/messages" class="<%= chemin.startsWith('/messages') ? 'on' : '' %>">Messages<% if (nbMessages) { %> <span class="pill"><%= nbMessages %></span><% } %></a>
-      <a href="/notifications" class="<%= chemin === '/notifications' ? 'on' : '' %>" aria-label="Notifications">🔔<% if (nbNotifs) { %> <span class="pill"><%= nbNotifs %></span><% } %></a>
-      <a href="/profil" class="me"><%= user.prenom %></a>
-      <form method="post" action="/deconnexion" class="inline"><button class="linkbtn">Déconnexion</button></form>
-    <% } %>
-  </nav>
-</div></header>
+<%
+  const lien = (href, ico, texte, actif, extra) => `<a href="${href}" class="${actif ? 'on' : ''}">${icone(ico)}<span>${texte}</span>${extra || ''}</a>`;
+  const pill = (n) => n ? ` <span class="pill">${n}</span>` : '';
+  const staff = user && user.role !== 'stagiaire';
+%>
+<header class="top"><nav class="menu" aria-label="Menu principal">
+  <%- lien('/', 'accueil', 'Accueil', chemin === '/') %>
+  <%- lien('/offres', 'offres', 'Offres', chemin.startsWith('/offres') || chemin.startsWith('/gestion/offres')) %>
+  <% if (staff) { %>
+    <%- lien('/candidats', 'candidats', 'Candidats', chemin === '/candidats') %>
+    <%- lien('/gestion/candidatures', 'candidatures', 'Candidatures', chemin.startsWith('/gestion')  && !chemin.startsWith('/gestion/offres')) %>
+    <%- lien('/agents', 'agents', 'Agents', chemin === '/agents' || chemin.startsWith('/admin')) %>
+  <% } else if (user) { %>
+    <%- lien('/mes-candidatures', 'candidatures', 'Candidatures', chemin === '/mes-candidatures') %>
+  <% } %>
+  <% if (user) { %>
+    <%- lien('/documents', 'documents', 'Documents', chemin === '/documents') %>
+    <%- lien('/messages', 'messages', 'Messages', chemin.startsWith('/messages'), pill(nbMessages)) %>
+    <% if (!staff) { %><%- lien('/notifications', 'notifications', 'Notifications', chemin === '/notifications', pill(nbNotifs)) %><% } %>
+    <%- lien('/profil', 'profil', user.prenom, chemin === '/profil') %>
+    <form method="post" action="/deconnexion" class="inline"><button class="linkbtn"><%- icone('deconnexion') %><span>Déconnexion</span></button></form>
+  <% } else { %>
+    <%- lien('/connexion', 'connexion', 'Connexion', chemin === '/connexion') %>
+    <%- lien('/inscription', 'inscription', 'Inscription', chemin === '/inscription') %>
+  <% } %>
+</nav></header>
 <main class="wrap">
 <% if (flash) { %><p class="alert ok"><%= flash %></p><% } %>

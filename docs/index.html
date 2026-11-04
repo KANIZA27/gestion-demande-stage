@@ -5,39 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="author" content="Kaniza SAINDOU">
 <meta name="description" content="Plateforme de gestion des demandes de stage - Kaniza SAINDOU">
-<title>Stages976 · Kaniza SAINDOU</title>
+<title>Plateforme d'offres de stages · Kaniza SAINDOU</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
-/* Layout : barre de navigation fixe bleu marine, contenu centré 1040px, cartes et tableaux sobres */
+/* Layout : charte du dossier professionnel. Barre de menu anthracite centrée avec icônes, fond gris clair, offres en cartes grises. Aspect clair unique, choisi volontairement. */
 :root{
-  --navy:#16325C; --navy2:#0F2445; --teal:#1F8579; --teal-d:#15655b; --teal-bg:#DDF1EE;
-  --bg:#F3F6FA; --card:#fff; --ink:#2E3440; --mut:#5F6B7A; --line:#D6DEE8; --title:#16325C;
-  --att:#9A5B00; --att-bg:#FFF1D6; --ok:#1F8579; --ok-bg:#DDF1EE; --no:#B42318; --no-bg:#FDE7E5;
-  --bubble:#E9EEF5; --input:#fff; --demo-bg:#FFF7E0; --demo-fg:#6B4A00;
-  --f-ui:"Poppins","Segoe UI",system-ui,sans-serif;
+  --navy:#333333; --navy2:#262626; --teal:#333333; --teal-d:#111111; --teal-bg:#E6E6E6; --link:#1F4E79;
+  --bg:#F1F1F1; --card:#fff; --carte:#E9E9E9; --ink:#333333; --mut:#666666; --line:#DADADA; --title:#333333;
+  --att:#8A5300; --att-bg:#FFF0D4; --ok:#2E7D32; --ok-bg:#E3F2E5; --no:#B42318; --no-bg:#FDE7E5;
+  --bubble:#E9E9E9; --input:#fff; --demo-bg:#FFF7E0; --demo-fg:#6B4A00;
+  --f-ui:Arial,"Helvetica Neue",Helvetica,sans-serif;
+  color-scheme:light;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0E1726; --card:#16233A; --ink:#E3E9F2; --mut:#9AA8BC; --line:#2A3A55; --title:#CFE0F5;
-  --teal:#3DB3A4; --teal-d:#2E9789; --teal-bg:#173A3A; --att:#F2B45A; --att-bg:#3A2C12; --ok:#4CC3B3; --ok-bg:#173A3A; --no:#F28B82; --no-bg:#3D1C1C;
-  --bubble:#22324D; --input:#0F1B2E; --demo-bg:#3A2C12; --demo-fg:#F2D49A; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0E1726; --card:#16233A; --ink:#E3E9F2; --mut:#9AA8BC; --line:#2A3A55; --title:#CFE0F5;
-  --teal:#3DB3A4; --teal-d:#2E9789; --teal-bg:#173A3A; --att:#F2B45A; --att-bg:#3A2C12; --ok:#4CC3B3; --ok-bg:#173A3A; --no:#F28B82; --no-bg:#3D1C1C;
-  --bubble:#22324D; --input:#0F1B2E; --demo-bg:#3A2C12; --demo-fg:#F2D49A; color-scheme:dark}
 *{box-sizing:border-box}
 body{font-family:var(--f-ui);color:var(--ink);background:var(--bg);line-height:1.5;margin:0;font-size:15px}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:20;background:var(--navy)}
 .wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-a{color:var(--teal);cursor:pointer}
+a{color:var(--link);cursor:pointer;font-weight:600}
 button{font:inherit;cursor:pointer}
-.top{background:var(--navy);color:#fff;position:sticky;top:env(safe-area-inset-top,0px);z-index:10}
-.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:60px;flex-wrap:wrap;padding-block:8px}
-.logo{color:#fff;font-weight:700;font-size:21px;background:none;border:0;padding:0}
-.logo span{color:#6FD3C6}
-nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
-nav button{background:none;border:0;color:#dbe6f2;padding:7px 11px;border-radius:8px;font-weight:600;font-size:13.5px;position:relative}
-nav button:hover,nav button.on{background:rgba(255,255,255,.12);color:#fff}
-nav button.cta{background:#1F8579;color:#fff}
+.top{background:var(--navy);color:#fff;position:sticky;top:env(safe-area-inset-top,0px);z-index:10;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.menu{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px 4px;max-width:1200px;margin:0 auto;padding-block:6px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.menu button{display:inline-flex;align-items:center;gap:6px;background:none;border:0;color:#fff;padding:10px 12px;border-radius:4px;font-size:15px}
+.menu button:hover,.menu button.on{background:#4a4a4a}
+.ico{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .pill{display:inline-block;min-width:18px;padding:0 5px;border-radius:9px;background:#F2B45A;color:#2b1d00;font-size:11px;font-weight:700;margin-left:4px;line-height:18px;text-align:center}
 .demo{background:var(--demo-bg);color:var(--demo-fg);font-size:13px}
 .demo .wrap{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding-block:7px}
@@ -48,28 +38,33 @@ h1,h2,h3{color:var(--title);line-height:1.2;text-wrap:balance;margin:0}
 .sub{color:var(--mut);margin:0 0 20px}
 .flash{padding:11px 15px;border-radius:10px;margin-bottom:18px;font-weight:600}
 .flash.ok{background:var(--ok-bg);color:var(--ok)} .flash.err{background:var(--no-bg);color:var(--no)}
-.hero{display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:36px;margin-bottom:22px}
-.eyebrow{display:inline-block;background:var(--teal-bg);color:var(--teal);font-weight:700;font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;padding:5px 12px;border-radius:20px}
-.hero h1{font-size:32px;margin:14px 0 12px} .hero h1 span{color:var(--teal)}
-.lead{color:var(--mut);max-width:46ch;margin:0 0 20px}
-.btn{display:inline-block;background:var(--teal);color:#fff;font-weight:600;padding:11px 20px;border-radius:10px;border:0;font-size:14.5px}
+h1.centre{text-align:center;font-size:27px;margin:4px 0 22px}
+.bloc{background:var(--card);border-radius:6px;padding:22px 24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.bloc h2{font-size:20px;margin-bottom:10px}
+.bloc>p{color:#444;margin:0}
+.btn{display:inline-block;background:var(--teal);color:#fff;font-weight:700;padding:11px 20px;border-radius:4px;border:0;font-size:14.5px}
 .btn:hover{background:var(--teal-d)}
 .btn.ghost{background:transparent;color:var(--teal);border:2px solid var(--teal);padding:9px 18px}
 .btn.red{background:var(--no)} .btn.sm{padding:7px 13px;font-size:13px}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.steps{list-style:none;display:flex;flex-direction:column;gap:10px;margin:0;padding:0}
-.steps li{background:var(--bg);border-radius:12px;padding:13px 15px;font-weight:600;color:var(--title);display:flex;align-items:center;gap:12px}
-.steps b{background:var(--teal);color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px;min-width:0}
 .card h3{margin-bottom:6px;font-size:17px}
 .card p{color:var(--mut);font-size:14px;margin:0}
-.offre{display:flex;flex-direction:column;gap:10px}
+.offres{display:flex;flex-direction:column;gap:14px}
+.offre{background:var(--carte);border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;align-items:flex-start;gap:3px}
+.offre h3{font-size:16px;margin:0 0 4px}
+.offre p{color:#444;font-size:14px;margin:0}
+.offre .petit{font-size:12.5px;color:var(--mut)}
+.offre .btn{margin-top:8px}
+.docs-set{border:1px solid var(--line);border-radius:6px;padding:12px 14px 2px;margin:0 0 15px}
+.docs-set legend{font-weight:600;font-size:13.5px;color:var(--title);padding:0 6px}
+.msgcand{background:var(--bg);border-radius:6px;padding:10px 12px;white-space:pre-line;font-size:14px;margin:6px 0 14px}
 .meta{display:flex;flex-wrap:wrap;gap:6px 14px;color:var(--mut);font-size:13px}
 .tag{display:inline-block;background:var(--teal-bg);color:var(--teal);font-weight:600;font-size:12px;padding:3px 10px;border-radius:14px}
-.form{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;max-width:760px}
+.form{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:24px;max-width:760px}
 .form.small{max-width:420px;margin:0 auto}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
 label{display:flex;flex-direction:column;font-weight:600;color:var(--title);font-size:13.5px;gap:6px;margin-bottom:15px}
@@ -120,18 +115,14 @@ small{color:var(--mut)}
 .empty{background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:30px;text-align:center;color:var(--mut)}
 .foot{background:var(--navy2);color:#aebfd0;font-size:12.5px;padding-block:16px;text-align:center}
 .foot b{color:#fff}
-@media(max-width:780px){.hero{grid-template-columns:1fr;padding:24px}.hero h1{font-size:26px}.grid3,.grid2{grid-template-columns:1fr}.fgrid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.dl{grid-template-columns:1fr}.dl dt{margin-top:6px}}
+@media(max-width:780px){.top{position:static}h1.centre{font-size:22px}.grid3,.grid2{grid-template-columns:1fr}.fgrid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.dl{grid-template-columns:1fr}.dl dt{margin-top:6px}}
 @media(prefers-reduced-motion:no-preference){main{animation:fade .25s ease}}
 @keyframes fade{from{opacity:.4}to{opacity:1}}
 </style>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
 </head>
 <body>
 
-<header class="top"><div class="wrap bar">
-  <button class="logo" data-go="accueil">Stages<span>976</span></button>
-  <nav id="nav"></nav>
-</div></header>
+<header class="top"><nav id="nav" class="menu" aria-label="Menu principal"></nav></header>
 <div class="demo"><div class="wrap">
   <span><b>Version d'essai</b> · les personnes et les offres sont des exemples, vos tests restent sur votre appareil.</span>
   <button id="reset" type="button">Remettre les exemples</button>
@@ -140,7 +131,8 @@ small{color:var(--mut)}
 <footer class="foot"><div class="wrap">Plateforme de gestion des demandes de stage · Conception et réalisation : <b>Kaniza SAINDOU</b> · 2026</div></footer>
 
 <script>
-const KEY = "stages976-v1";
+const KEY = "stages976-v2";
+const jour = n => new Date(Date.now() + n * 864e5).toISOString().slice(0, 10);
 const today = () => new Date().toISOString().slice(0, 16).replace("T", " ");
 function seed() {
   return {
@@ -153,20 +145,20 @@ function seed() {
       { id: 5, nom: "ABDOU", prenom: "Nadjati", email: "nadjati@demo.yt", mdp: "Stagiaire2026!", role: "stagiaire", telephone: "0639 01 02 03", naissance: "2006-01-21", adresse: "Sada" },
     ],
     offres: [
-      { id: 1, titre: "Développeuse / développeur web junior", description: "Participer au développement et à la maintenance des applications internes du Département (HTML, CSS, JavaScript, Node.js).", departement: "Direction du Numérique (DNSI)", debut: "2027-01-11", fin: "2027-03-26", places: 1 },
-      { id: 2, titre: "Assistante / assistant ressources humaines", description: "Accompagner l'équipe RH dans le suivi administratif des dossiers et l'accueil des agents.", departement: "Ressources Humaines", debut: "2027-02-01", fin: "2027-02-26", places: 1 },
-      { id: 3, titre: "Assistante / assistant communication", description: "Rédiger des publications, préparer des visuels et couvrir les événements du Département.", departement: "Communication", debut: "2027-01-18", fin: "2027-03-12", places: 1 },
-      { id: 4, titre: "Accompagnement social des familles", description: "Découvrir l'accompagnement des familles et l'accueil du public au sein d'une circonscription d'action sociale.", departement: "Action sociale", debut: "2027-03-01", fin: "2027-03-26", places: 2 },
+      { id: 1, titre: "Stage en développement web à Mamoudzou", description: "Développement d'une plateforme web pour un service public : participer à la création et à la maintenance des applications internes du Département (HTML, CSS, JavaScript, Node.js).", departement: "Direction du Numérique (DNSI)", debut: "2027-01-11", fin: "2027-03-26", places: 1, publication: jour(-23), limite: jour(41) },
+      { id: 2, titre: "Stage RH à Mamoudzou", description: "Accompagner l'équipe des ressources humaines dans le suivi administratif des dossiers et l'accueil des agents.", departement: "Ressources Humaines", debut: "2027-02-01", fin: "2027-02-26", places: 1, publication: jour(-16), limite: jour(57) },
+      { id: 3, titre: "Stage en communication à Mamoudzou", description: "Rédiger des publications, préparer des visuels et couvrir les événements du Département.", departement: "Communication", debut: "2027-01-18", fin: "2027-03-12", places: 1, publication: jour(-10), limite: jour(46) },
+      { id: 4, titre: "Stage en accompagnement social à Dzaoudzi", description: "Découvrir l'accompagnement des familles et l'accueil du public au sein d'une circonscription d'action sociale.", departement: "Action sociale", debut: "2027-03-01", fin: "2027-03-26", places: 2, publication: jour(-2), limite: jour(88) },
     ],
     demandes: [
-      { id: 1, user: 3, offre: 4, cv: "CV_Fatima_ATTOUMANI.pdf", lettre: "Lettre_motivation.pdf", convention: null, statut: "validée", date: "2026-10-22 09:14" },
+      { id: 1, user: 3, offre: 4, cv: "CV_Fatima_ATTOUMANI.pdf", lettre: "Lettre_motivation.pdf", convention: null, statut: "validée", date: "2026-10-22 09:14", message: "Je souhaite découvrir le travail social auprès des familles." },
       { id: 2, user: 4, offre: 1, cv: "CV_Ali_SAID.pdf", lettre: "Lettre_Ali.pdf", convention: "Convention_IUT.pdf", statut: "validée", date: "2026-10-31 10:02" },
-      { id: 3, user: 5, offre: 3, cv: "CV_Nadjati.pdf", lettre: "Lettre_Nadjati.pdf", convention: null, statut: "en attente", date: "2026-11-03 15:40" },
+      { id: 3, user: 5, offre: 3, cv: "CV_Nadjati.pdf", lettre: "Lettre_Nadjati.pdf", convention: null, statut: "en attente", date: "2026-11-03 15:40", message: "Je suis disponible dès janvier." },
       { id: 4, user: 3, offre: 2, cv: "CV_Fatima_ATTOUMANI.pdf", lettre: "Lettre_RH.pdf", convention: null, statut: "refusée", date: "2026-10-25 11:30" },
     ],
     notifs: [
-      { id: 1, user: 3, texte: "Votre candidature « Accompagnement social des familles » a été validée.", lu: false, date: "2026-10-28 14:00" },
-      { id: 2, user: 3, texte: "Votre candidature « Assistante / assistant ressources humaines » a été refusée.", lu: true, date: "2026-10-27 09:20" },
+      { id: 1, user: 3, texte: "Votre candidature « Stage en accompagnement social à Dzaoudzi » a été validée.", lu: false, date: "2026-10-28 14:00" },
+      { id: 2, user: 3, texte: "Votre candidature « Stage RH à Mamoudzou » a été refusée.", lu: true, date: "2026-10-27 09:20" },
     ],
     messages: [
       { id: 1, de: 3, a: 2, texte: "Bonjour, je voudrais savoir quels documents apporter le premier jour du stage ?", lu: true, date: "2026-11-02 08:30" },
@@ -175,7 +167,7 @@ function seed() {
     emails: [],
   };
 }
-let S, me = null, view = "accueil", param = null, flash = null;
+let S, me = null, view = "accueil", param = null, flash = null, apres = null;
 function load() { try { const r = localStorage.getItem(KEY); if (r) return JSON.parse(r); } catch (e) {} return seed(); }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
 S = load();
@@ -184,7 +176,7 @@ const id = () => ++S.seq;
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const U = i => S.users.find(u => u.id === i);
 const O = i => S.offres.find(o => o.id === i);
-const fd = d => d ? new Date(d.length > 10 ? d.replace(" ", "T") : d + "T00:00").toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" }) : "—";
+const fd = d => d ? new Date(d.length > 10 ? d.replace(" ", "T") : d + "T00:00").toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", year: "numeric" }) : "—";
 const badge = s => `<span class="badge ${s === "validée" ? "ok" : s === "refusée" ? "no" : "att"}">${s === "en attente" ? "En attente" : s === "validée" ? "Validée" : "Refusée"}</span>`;
 const isGest = () => me && (me.role === "gestionnaire" || me.role === "admin");
 function notify(user, texte) {
@@ -192,35 +184,54 @@ function notify(user, texte) {
   const u = U(user); S.emails.unshift({ a: u.email, texte, date: today() });
 }
 function go(v, p = null, f = null) { view = v; param = p; flash = f; render(); window.scrollTo(0, 0); }
-function login(u) { me = u; try { sessionStorage.setItem(KEY + "-me", u.id); } catch (e) {} go(isGest() ? "tableau" : "offres", null, { t: "ok", m: `Bonjour ${u.prenom}, vous êtes connecté(e).` }); }
+function login(u) { me = u; try { sessionStorage.setItem(KEY + "-me", u.id); } catch (e) {} const r = apres; apres = null; if (r) return go(r.view, r.param, { t: "ok", m: `Bonjour ${u.prenom}, vous êtes connecté(e).` }); go(isGest() ? "gcands" : "offres", null, { t: "ok", m: `Bonjour ${u.prenom}, vous êtes connecté(e).` }); }
 
+const ICO = {
+  accueil: '<path d="M3 11l9-8 9 8v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>',
+  offres: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/>',
+  candidats: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2a5 5 0 0 1 5.5 5.8"/>',
+  candidatures: '<path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M8 13h8M8 17h6"/>',
+  agents: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  documents: '<path d="M3 6a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/>',
+  connexion: '<path d="M10 17l5-5-5-5M15 12H3M14 3h6a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1h-6"/>',
+  inscription: '<circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M19 8v6M16 11h6"/>',
+  messages: '<path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H8l-4 4V5a1 1 0 0 1 1-1z"/>',
+  notifications: '<path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"/>',
+  profil: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="10" r="3"/><path d="M6.5 18.5a6 6 0 0 1 11 0"/>',
+  deconnexion: '<path d="M14 7l5 5-5 5M19 12H8M10 21H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h6"/>',
+};
+const ico = n => `<svg class="ico" viewBox="0 0 24 24" aria-hidden="true">${ICO[n]}</svg>`;
 function navHtml() {
-  const b = (v, t, extra = "") => `<button data-go="${v}" class="${view === v ? "on" : ""} ${extra}">${t}</button>`;
-  if (!me) return b("offres", "Offres") + b("connexion", "Connexion") + b("inscription", "Créer un compte", "cta");
+  const b = (v, i, t, actif) => `<button data-go="${v}" class="${actif || view === v ? "on" : ""}">${ico(i)}<span>${t}</span></button>`;
+  const p = n => n ? ` <span class="pill">${n}</span>` : "";
+  let h = b("accueil", "accueil", "Accueil") + b("offres", "offres", "Offres", ["candidater", "goffres", "offreform"].includes(view));
+  if (!me) return h + b("connexion", "connexion", "Connexion") + b("inscription", "inscription", "Inscription");
   const nm = S.messages.filter(m => m.a === me.id && !m.lu).length;
   const nn = S.notifs.filter(n => n.user === me.id && !n.lu).length;
-  const p = n => n ? `<span class="pill">${n}</span>` : "";
-  let h = "";
-  if (me.role === "stagiaire") h += b("offres", "Offres") + b("mes", "Mes candidatures") + b("notifs", "Notifications" + p(nn));
-  else h += b("tableau", "Tableau de bord") + b("gcands", "Candidatures") + b("goffres", "Offres");
-  if (me.role === "admin") h += b("admin", "Comptes");
-  h += b("messages", "Messages" + p(nm)) + b("profil", me.prenom) + `<button data-act="logout">Déconnexion</button>`;
-  return h;
+  if (isGest()) h += b("candidats", "candidats", "Candidats") + b("gcands", "candidatures", "Candidatures", ["gcand", "tableau"].includes(view)) + b("agents", "agents", "Agents", view === "admin");
+  else h += b("mes", "candidatures", "Candidatures");
+  h += b("documents", "documents", "Documents") + b("messages", "messages", "Messages" + p(nm), view === "conv");
+  if (!isGest()) h += b("notifs", "notifications", "Notifications" + p(nn));
+  return h + b("profil", "profil", esc(me.prenom)) + `<button data-act="logout">${ico("deconnexion")}<span>Déconnexion</span></button>`;
 }
+const carte = o => {
+  const pl = o.places > 0 ? `${o.places} place${o.places > 1 ? "s" : ""} disponible${o.places > 1 ? "s" : ""}` : "complet";
+  const deja = me && S.demandes.find(d => d.user === me.id && d.offre === o.id);
+  const bouton = isGest() ? `<button class="btn sm" data-go="offreform" data-p="${o.id}">Modifier</button>`
+    : deja ? `<span style="margin-top:8px">${badge(deja.statut)} <small>Vous avez déjà postulé</small></span>`
+    : o.places <= 0 || (o.limite && o.limite < jour(0)) ? `<button class="btn sm" disabled>Postuler</button>`
+    : `<button class="btn sm" data-go="candidater" data-p="${o.id}">Postuler</button>`;
+  return `<article class="offre"><h3>${esc(o.titre)}</h3><p>Description : ${esc(o.description)}</p><p>Date publication : ${fd(o.publication)}</p><p>Date limite : ${fd(o.limite)}</p><p class="petit">${esc(o.departement)} · ${pl}</p>${bouton}</article>`;
+};
+const offresTriees = () => S.offres.slice().sort((a, b) => (b.publication || "").localeCompare(a.publication || ""));
 
 const V = {
   accueil() {
-    return `<section class="hero"><div>
-      <span class="eyebrow">Conseil Départemental de Mayotte</span>
-      <h1>Votre demande de stage, <span>en ligne et suivie</span></h1>
-      <p class="lead">Plus besoin d'apporter un dossier papier. Créez votre compte, choisissez une offre, envoyez vos documents et suivez la réponse du service.</p>
-      <div class="row"><button class="btn" data-go="offres">Voir les offres</button><button class="btn ghost" data-go="connexion">Essayer avec un compte</button></div>
-    </div><ul class="steps"><li><b>1</b>Je crée mon compte</li><li><b>2</b>Je candidate avec mon CV et ma lettre</li><li><b>3</b>Je suis l'état de ma demande</li></ul></section>
-    <section class="grid3">
-      <div class="card"><h3>Pour les stagiaires</h3><p>Candidater en quelques minutes, recevoir une notification à chaque étape, écrire au service.</p></div>
-      <div class="card"><h3>Pour les gestionnaires</h3><p>Publier les offres, lire les pièces jointes, valider ou refuser en un clic.</p></div>
-      <div class="card"><h3>Pour l'administration</h3><p>Gérer les comptes et les rôles, suivre le nombre de demandes.</p></div>
-    </section>`;
+    return `<h1 class="centre">Bienvenue sur notre plateforme d'offres des stages</h1>
+    <section class="bloc"><h2>À propos de notre plateforme</h2>
+      <p>Cette plateforme permet de consulter les offres de stage du Conseil Départemental de Mayotte, de postuler en ligne avec son CV, sa lettre de motivation et sa convention de stage, puis de suivre l'état de sa demande. Elle s'adresse principalement aux étudiants et aux jeunes diplômés.</p>
+      ${me ? "" : `<div class="row" style="margin-top:16px"><button class="btn" data-go="inscription">Créer mon compte</button><a data-go="connexion">J'ai déjà un compte</a></div>`}</section>
+    <section class="bloc"><h2>Les offres à consulter</h2><div class="offres">${offresTriees().map(carte).join("")}</div></section>`;
   },
   connexion() {
     const acc = [[3, "Stagiaire"], [2, "Gestionnaire"], [1, "Administrateur"]];
@@ -241,28 +252,29 @@ const V = {
       <button class="btn" style="width:100%">Créer mon compte</button></form></div>`;
   },
   offres() {
-    return `<h1 class="ptitle">Offres de stage</h1><p class="sub">${S.offres.length} offres proposées par les services du Département.</p>
-    <div class="grid2">${S.offres.map(o => {
-      const deja = me && S.demandes.find(d => d.user === me.id && d.offre === o.id);
-      return `<article class="card offre"><span class="tag" style="align-self:flex-start">${esc(o.departement)}</span><h3>${esc(o.titre)}</h3><p>${esc(o.description)}</p>
-      <div class="meta"><span>Du ${fd(o.debut)} au ${fd(o.fin)}</span><span>${o.places > 0 ? o.places + " place" + (o.places > 1 ? "s" : "") + " disponible" + (o.places > 1 ? "s" : "") : "Complet"}</span></div>
-      <div>${deja ? badge(deja.statut) + ' <small>Vous avez déjà candidaté</small>' : o.places <= 0 ? '<button class="btn sm" disabled>Plus de place</button>' : me && me.role !== "stagiaire" ? "" : `<button class="btn sm" data-go="candidater" data-p="${o.id}">Candidater</button>`}</div></article>`;
-    }).join("")}</div>`;
+    return `<div class="row" style="justify-content:space-between;margin-bottom:16px"><div><h1 class="ptitle">Les offres de stage</h1><p class="sub" style="margin:0">${S.offres.length} offres proposées par les services du Département.</p></div>${isGest() ? `<button class="btn sm" data-go="goffres">Gérer les offres</button>` : ""}</div>
+    <div class="offres">${offresTriees().map(carte).join("")}</div>`;
   },
   candidater() {
-    if (!me) return go("connexion", null, { t: "err", m: "Connectez-vous ou créez un compte pour candidater." }) || "";
     const o = O(+param);
-    return `<h1 class="ptitle">Candidater</h1><p class="sub">${esc(o.titre)} · ${esc(o.departement)}</p>
+    const deja = S.demandes.find(d => d.user === me.id && d.offre === o.id);
+    if (deja) { view = "mes"; flash = { t: "ok", m: "Vous avez déjà postulé à cette offre. Voici où en est votre candidature." }; return V.mes(); }
+    return `<p><a data-go="offres">← Retour aux offres</a></p>
     <form class="form" id="f-cand">
-      <h3 style="margin-bottom:12px">1. Mes informations</h3>
+      <h1 class="ptitle" style="margin-bottom:8px">Postuler à l'offre : ${esc(o.titre)}</h1>
+      <p style="margin:0 0 6px">${esc(o.description)}</p>
+      <p style="margin:0 0 18px"><b>Date limite :</b> ${fd(o.limite)}</p>
+      <label>Message (optionnel) :<textarea id="c-msg" rows="4" maxlength="2000" placeholder="Votre message..."></textarea></label>
+      <fieldset class="docs-set"><legend>Joindre vos documents (PDF, 5 Mo maximum chacun) :</legend>
+        <label>CV *<input id="c-cv" type="file" accept="application/pdf,.pdf" required></label>
+        <label>Lettre de motivation *<input id="c-lm" type="file" accept="application/pdf,.pdf" required></label>
+        <label>Convention de stage<input id="c-conv" type="file" accept="application/pdf,.pdf"><span class="hint">Si vous l'avez déjà.</span></label>
+      </fieldset>
+      <h3 style="margin:4px 0 12px;font-size:15px">Vos coordonnées</h3>
       <div class="fgrid"><label>Nom<input id="c-nom" value="${esc(me.nom)}" required></label><label>Prénom<input id="c-prenom" value="${esc(me.prenom)}" required></label>
       <label>Téléphone<input id="c-tel" value="${esc(me.telephone)}" required></label><label>Date de naissance<input id="c-naiss" type="date" value="${esc(me.naissance)}" required></label>
       <label class="full">Adresse<input id="c-adr" value="${esc(me.adresse)}" required></label></div>
-      <h3 style="margin:6px 0 12px">2. Mes documents (PDF, 5 Mo maximum)</h3>
-      <label>CV *<input id="c-cv" type="file" accept="application/pdf,.pdf" required></label>
-      <label>Lettre de motivation *<input id="c-lm" type="file" accept="application/pdf,.pdf" required></label>
-      <label>Convention de stage<input id="c-conv" type="file" accept="application/pdf,.pdf"><span class="hint">Facultatif au dépôt, à fournir si la demande est validée.</span></label>
-      <div class="row"><button class="btn">Envoyer ma candidature</button><button type="button" class="btn ghost" data-go="offres">Annuler</button></div>
+      <div class="row"><button class="btn">Envoyer ma candidature</button></div>
     </form>`;
   },
   mes() {
@@ -282,6 +294,29 @@ const V = {
     l.forEach(n => n.lu = true); save();
     return h;
   },
+  candidats() {
+    const l = S.users.filter(u => u.role === "stagiaire").sort((a, b) => a.nom.localeCompare(b.nom));
+    return `<h1 class="ptitle">Candidats</h1><p class="sub">${l.length} personnes inscrites sur la plateforme.</p>
+    <div class="tablewrap"><table><thead><tr><th>Nom</th><th>Coordonnées</th><th>Adresse</th><th>Candidatures</th><th></th></tr></thead><tbody>
+    ${l.map(u => { const ds = S.demandes.filter(d => d.user === u.id), ok = ds.filter(d => d.statut === "validée").length;
+      return `<tr><td><b>${esc(u.prenom)} ${esc(u.nom)}</b></td><td>${esc(u.email)}<br><small>${esc(u.telephone || "—")}</small></td><td>${esc(u.adresse || "—")}</td><td>${ds.length}${ok ? ` <span class="badge ok">${ok} validée${ok > 1 ? "s" : ""}</span>` : ""}</td><td><a data-act="ecrire" data-id="${u.id}">Écrire</a></td></tr>`; }).join("")}
+    </tbody></table></div>`;
+  },
+  agents() {
+    const l = S.users.filter(u => u.role !== "stagiaire");
+    return `<div class="row" style="justify-content:space-between;margin-bottom:16px"><div><h1 class="ptitle">Agents</h1><p class="sub" style="margin:0">Les agents du Département qui gèrent les offres et les candidatures.</p></div>${me.role === "admin" ? `<button class="btn sm" data-go="admin">Gérer les comptes et les rôles</button>` : ""}</div>
+    <div class="tablewrap"><table><thead><tr><th>Nom</th><th>E-mail</th><th>Téléphone</th><th>Rôle</th></tr></thead><tbody>
+    ${l.map(u => `<tr><td><b>${esc(u.prenom)} ${esc(u.nom)}</b>${u.id === me.id ? " <small>(vous)</small>" : ""}</td><td>${esc(u.email)}</td><td>${esc(u.telephone || "—")}</td><td><span class="tag">${u.role === "admin" ? "Administrateur" : "Gestionnaire"}</span></td></tr>`).join("")}
+    </tbody></table></div>`;
+  },
+  documents() {
+    const l = S.demandes.filter(d => isGest() || d.user === me.id).sort((a, b) => b.date.localeCompare(a.date));
+    const f = n => n ? `<span class="file">${esc(n)}</span>` : "";
+    return `<h1 class="ptitle">Documents</h1><p class="sub">${isGest() ? "Toutes les pièces jointes reçues avec les candidatures." : "Les documents que vous avez envoyés avec vos candidatures."}</p>
+    ${l.length ? `<div class="tablewrap"><table><thead><tr>${isGest() ? "<th>Candidat(e)</th>" : ""}<th>Offre</th><th>Envoyé le</th><th>Pièces jointes</th><th>Statut</th></tr></thead><tbody>
+    ${l.map(d => { const u = U(d.user), o = O(d.offre) || { titre: "Offre supprimée" }; return `<tr>${isGest() ? `<td><b>${esc(u.prenom)} ${esc(u.nom)}</b></td>` : ""}<td>${esc(o.titre)}</td><td>${fd(d.date)}</td><td><div class="files">${f(d.cv)}${f(d.lettre)}${f(d.convention)}</div></td><td>${badge(d.statut)}</td></tr>`; }).join("")}
+    </tbody></table></div>` : `<div class="empty">Aucun document pour le moment. <a data-go="offres">Voir les offres</a></div>`}`;
+  },
   tableau() {
     const c = s => S.demandes.filter(d => !s || d.statut === s).length;
     const rec = S.demandes.slice().sort((a, b) => b.date.localeCompare(a.date)).slice(0, 5);
@@ -293,7 +328,7 @@ const V = {
   gcands() {
     const f = param || "";
     const l = S.demandes.filter(d => !f || d.statut === f).sort((a, b) => b.date.localeCompare(a.date));
-    return `<h1 class="ptitle">Candidatures</h1><p class="sub">Touchez une candidature pour l'ouvrir.</p>
+    return `<div class="row" style="justify-content:space-between;margin-bottom:6px"><h1 class="ptitle">Candidatures</h1><button class="btn sm ghost" data-go="tableau">Tableau de bord</button></div><p class="sub">Touchez une candidature pour l'ouvrir.</p>
     <div class="row" style="margin-bottom:14px">${["", "en attente", "validée", "refusée"].map(s => `<button class="btn sm ${f === s ? "" : "ghost"}" data-go="gcands" data-p="${s}">${s ? s[0].toUpperCase() + s.slice(1) : "Toutes"}</button>`).join("")}</div>${table(l)}`;
   },
   gcand() {
@@ -301,7 +336,7 @@ const V = {
     const f = (n, t) => n ? `<span class="file" title="${esc(t)}">${esc(n)}</span>` : "";
     return `<p><a data-go="gcands">← Retour aux candidatures</a></p>
     <div class="row" style="justify-content:space-between;margin:6px 0 18px"><div><h1 class="ptitle">${esc(u.prenom)} ${esc(u.nom)}</h1><p class="sub" style="margin:0">${esc(o.titre)} · ${esc(o.departement)}</p></div>${badge(d.statut)}</div>
-    <div class="grid2"><div class="card"><h3>Candidat(e)</h3><dl class="dl"><dt>E-mail</dt><dd>${esc(u.email)}</dd><dt>Téléphone</dt><dd>${esc(u.telephone || "—")}</dd><dt>Date de naissance</dt><dd>${fd(u.naissance)}</dd><dt>Adresse</dt><dd>${esc(u.adresse || "—")}</dd><dt>Envoyée le</dt><dd>${fd(d.date)}</dd></dl></div>
+    <div class="grid2"><div class="card"><h3>Candidat(e)</h3><dl class="dl"><dt>E-mail</dt><dd>${esc(u.email)}</dd><dt>Téléphone</dt><dd>${esc(u.telephone || "—")}</dd><dt>Date de naissance</dt><dd>${fd(u.naissance)}</dd><dt>Adresse</dt><dd>${esc(u.adresse || "—")}</dd><dt>Envoyée le</dt><dd>${fd(d.date)}</dd></dl>${d.message ? `<h3 style="margin-top:16px">Message du candidat</h3><p class="msgcand">${esc(d.message)}</p>` : ""}</div>
     <div class="card"><h3>Pièces jointes</h3><div class="files" style="margin:10px 0 18px">${f(d.cv, "CV")}${f(d.lettre, "Lettre")}${f(d.convention, "Convention")}</div>
     <h3>Décision</h3><p style="margin-bottom:12px">Places restantes sur cette offre : <b>${o.places}</b>. ${esc(u.prenom)} sera prévenu(e) par notification et e-mail.</p>
     ${d.statut === "en attente" ? `<div class="row"><button class="btn" data-act="valider" data-id="${d.id}" ${o.places <= 0 ? "disabled" : ""}>Valider</button><button class="btn red" data-act="refuser" data-id="${d.id}">Refuser</button></div>` : `<button class="btn ghost sm" data-act="rouvrir" data-id="${d.id}">Remettre en attente</button>`}
@@ -309,19 +344,20 @@ const V = {
   },
   goffres() {
     return `<div class="row" style="justify-content:space-between;margin-bottom:16px"><div><h1 class="ptitle">Offres de stage</h1><p class="sub" style="margin:0">Ajoutez, modifiez ou supprimez les offres.</p></div><button class="btn" data-go="offreform">Nouvelle offre</button></div>
-    <div class="tablewrap"><table><thead><tr><th>Offre</th><th>Service</th><th>Période</th><th>Places</th><th>Candidatures</th><th></th></tr></thead><tbody>
-    ${S.offres.map(o => `<tr><td><b>${esc(o.titre)}</b></td><td>${esc(o.departement)}</td><td>${fd(o.debut)} → ${fd(o.fin)}</td><td>${o.places}</td><td>${S.demandes.filter(d => d.offre === o.id).length}</td>
+    <div class="tablewrap"><table><thead><tr><th>Offre</th><th>Service</th><th>Date limite</th><th>Places</th><th>Candidatures</th><th></th></tr></thead><tbody>
+    ${S.offres.map(o => `<tr><td><b>${esc(o.titre)}</b></td><td>${esc(o.departement)}</td><td>${fd(o.limite)}</td><td>${o.places}</td><td>${S.demandes.filter(d => d.offre === o.id).length}</td>
     <td><div class="row"><button class="btn sm ghost" data-go="offreform" data-p="${o.id}">Modifier</button>${param === "del" + o.id ? `<button class="btn sm red" data-act="delOffre" data-id="${o.id}">Confirmer</button>` : `<button class="btn sm ghost" data-go="goffres" data-p="del${o.id}">Supprimer</button>`}</div></td></tr>`).join("")}
     </tbody></table></div>`;
   },
   offreform() {
-    const o = param ? O(+param) : { titre: "", description: "", departement: "", debut: "", fin: "", places: 1 };
+    const o = param ? O(+param) : { titre: "", description: "", departement: "", debut: "", fin: "", places: 1, limite: "" };
     return `<h1 class="ptitle">${param ? "Modifier l'offre" : "Nouvelle offre"}</h1><p class="sub">Elle sera visible tout de suite par les stagiaires.</p>
     <form class="form" id="f-offre"><label>Titre<input id="o-titre" value="${esc(o.titre)}" required></label>
     <label>Service<input id="o-dep" value="${esc(o.departement)}" required placeholder="Ex. Direction du Numérique"></label>
     <label>Description<textarea id="o-desc" rows="4" required>${esc(o.description)}</textarea></label>
     <div class="fgrid"><label>Début<input id="o-deb" type="date" value="${o.debut}" required></label><label>Fin<input id="o-fin" type="date" value="${o.fin}" required></label>
-    <label>Places disponibles<input id="o-pl" type="number" min="0" value="${o.places}" required></label></div>
+    <label>Places disponibles<input id="o-pl" type="number" min="0" value="${o.places}" required></label>
+    <label>Date limite pour postuler<input id="o-lim" type="date" value="${o.limite || ""}" required></label></div>
     <div class="row"><button class="btn">${param ? "Enregistrer" : "Publier l'offre"}</button><button type="button" class="btn ghost" data-go="goffres">Annuler</button></div></form>`;
   },
   messages() {
@@ -358,10 +394,10 @@ function table(l) {
   return `<div class="tablewrap"><table><thead><tr><th>Candidat(e)</th><th>Offre</th><th>Envoyée le</th><th>Statut</th><th></th></tr></thead><tbody>
   ${l.map(d => { const u = U(d.user), o = O(d.offre) || { titre: "Offre supprimée" }; return `<tr><td><b>${esc(u.prenom)} ${esc(u.nom)}</b><br><small>${esc(u.email)}</small></td><td>${esc(o.titre)}</td><td>${fd(d.date)}</td><td>${badge(d.statut)}</td><td><button class="btn sm ghost" data-go="gcand" data-p="${d.id}">Ouvrir</button></td></tr>`; }).join("")}</tbody></table></div>`;
 }
-const PRIVE = { mes: "s", notifs: "s", candidater: "s", tableau: "g", gcands: "g", gcand: "g", goffres: "g", offreform: "g", messages: "*", conv: "*", profil: "*", admin: "a" };
+const PRIVE = { candidats: "g", agents: "g", documents: "*", mes: "s", notifs: "s", candidater: "s", tableau: "g", gcands: "g", gcand: "g", goffres: "g", offreform: "g", messages: "*", conv: "*", profil: "*", admin: "a" };
 function render() {
   const need = PRIVE[view];
-  if (need && !me) { view = "connexion"; flash = { t: "err", m: "Connectez-vous pour accéder à cette page." }; }
+  if (need && !me) { apres = { view, param }; view = "connexion"; flash = { t: "err", m: "Connectez-vous ou créez un compte pour continuer." }; }
   else if ((need === "g" && !isGest()) || (need === "a" && me.role !== "admin") || (need === "s" && me.role !== "stagiaire")) { view = isGest() ? "tableau" : "offres"; flash = { t: "err", m: "Cette page n'est pas accessible avec votre rôle." }; }
   document.getElementById("nav").innerHTML = navHtml();
   const body = V[view]() || "";
@@ -413,14 +449,15 @@ document.addEventListener("submit", e => {
     }
     Object.assign(me, { nom: val("c-nom"), prenom: val("c-prenom"), telephone: val("c-tel"), naissance: val("c-naiss"), adresse: val("c-adr") });
     const o = O(+param);
-    S.demandes.push({ id: id(), user: me.id, offre: o.id, ...out, statut: "en attente", date: today() });
+    if (o.limite && o.limite < jour(0)) { flash = { t: "err", m: "La date limite pour postuler à cette offre est dépassée." }; return render(); }
+    S.demandes.push({ id: id(), user: me.id, offre: o.id, ...out, message: val("c-msg") || null, statut: "en attente", date: today() });
     notify(me.id, `Votre candidature « ${o.titre} » a bien été reçue. Le service vous répondra rapidement.`);
     save(); return go("mes", null, { t: "ok", m: "Candidature envoyée. Vous avez reçu une confirmation." });
   }
   if (f === "f-offre") {
-    const data = { titre: val("o-titre"), departement: val("o-dep"), description: val("o-desc"), debut: val("o-deb"), fin: val("o-fin"), places: +val("o-pl") };
+    const data = { titre: val("o-titre"), departement: val("o-dep"), description: val("o-desc"), debut: val("o-deb"), fin: val("o-fin"), places: +val("o-pl"), limite: val("o-lim") };
     if (data.fin < data.debut) { flash = { t: "err", m: "La date de fin doit être après la date de début." }; return render(); }
-    if (param) Object.assign(O(+param), data); else S.offres.unshift({ id: id(), ...data });
+    if (param) Object.assign(O(+param), data); else S.offres.unshift({ id: id(), ...data, publication: jour(0) });
     save(); return go("goffres", null, { t: "ok", m: param ? "Offre modifiée." : "Offre publiée." });
   }
   if (f === "f-msg") { S.messages.push({ id: id(), de: me.id, a: +param, texte: val("m-txt"), lu: false, date: today() }); save(); return go("conv", param); }

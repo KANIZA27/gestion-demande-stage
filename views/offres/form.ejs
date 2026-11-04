@@ -10,6 +10,7 @@
       <label>Places disponibles *<input type="number" min="0" name="places_disponibles" value="<%= o.places_disponibles ?? 1 %>" required></label>
       <label>Date de début<input type="date" name="date_debut" value="<%= o.date_debut || '' %>"></label>
       <label>Date de fin<input type="date" name="date_fin" value="<%= o.date_fin || '' %>"></label>
+      <label>Date limite pour postuler<input type="date" name="date_limite" value="<%= o.date_limite || '' %>"></label>
     </div>
     <datalist id="services"><option>Direction du Numérique (DNSI)</option><option>Ressources Humaines</option><option>Communication</option><option>Action sociale</option></datalist>
     <label>Description<textarea name="description" rows="5"><%= o.description || '' %></textarea></label>

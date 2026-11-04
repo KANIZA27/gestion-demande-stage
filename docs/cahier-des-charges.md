@@ -62,6 +62,8 @@ Règles :
 
 - Documents au format **PDF uniquement**, **5 Mo maximum** par fichier.
 - Une seule candidature par offre et par stagiaire.
+- Un message facultatif peut accompagner la candidature.
+- Il n'est plus possible de postuler après la **date limite** de l'offre.
 - Statuts possibles : **en attente**, **validée**, **refusée**.
 - Le stagiaire voit l'état de chacune de ses demandes en temps réel.
 
@@ -71,7 +73,10 @@ Règles :
 - Consultation des offres et candidature par les stagiaires.
 - Le nombre de places disponibles diminue automatiquement quand une candidature est validée ; une offre sans place n'accepte plus de candidature.
 
-### 3.4 Notifications et communication
+### 3.4 Navigation
+Menu principal : **Accueil, Offres, Candidats, Candidatures, Agents, Documents, Connexion, Inscription**. Chaque utilisateur ne voit que les rubriques de son rôle (par exemple, « Candidats » et « Agents » sont réservés aux gestionnaires et administrateurs). Tout le monde se connecte depuis la même page : la plateforme ouvre l'espace correspondant au compte.
+
+### 3.5 Notifications et communication
 
 - Notification dans la plateforme **et** e-mail à chaque étape : dépôt de la demande, validation, refus.
 - Messagerie interne entre stagiaires et gestionnaires.
@@ -129,6 +134,8 @@ Règles :
 | date_debut | DATE | | Début prévu |
 | date_fin | DATE | | Fin prévue |
 | places_disponibles | ENTIER | | Nombre de places encore disponibles |
+| date_publication | DATE | | Date de mise en ligne de l'offre *(ajouté en v2)* |
+| date_limite | DATE | | Dernier jour pour postuler *(ajouté en v2)* |
 
 ### 6.3 Table `demandes_stage`
 | Champ | Type | Taille | Description |
@@ -139,6 +146,7 @@ Règles :
 | cv | CHAÎNE | 255 | Chemin du fichier CV |
 | lettre_motivation | CHAÎNE | 255 | Chemin du fichier lettre de motivation |
 | convention | CHAÎNE | 255 | Chemin du fichier convention de stage *(ajouté en v2)* |
+| message | TEXTE | | Message facultatif du candidat *(ajouté en v2)* |
 | statut | ÉNUMÉRATION (en attente, validée, refusée) | | État de la demande |
 | date_soumission | **TIMESTAMP** | | Date et heure de soumission *(type précisé en v2)* |
 

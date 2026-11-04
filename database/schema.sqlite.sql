@@ -10,13 +10,14 @@ CREATE TABLE IF NOT EXISTS utilisateurs (
 CREATE TABLE IF NOT EXISTS offres_stage (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   titre TEXT NOT NULL, description TEXT, departement TEXT NOT NULL,
-  date_debut TEXT, date_fin TEXT, places_disponibles INTEGER NOT NULL DEFAULT 1
+  date_debut TEXT, date_fin TEXT, places_disponibles INTEGER NOT NULL DEFAULT 1,
+  date_publication TEXT DEFAULT CURRENT_DATE, date_limite TEXT
 );
 CREATE TABLE IF NOT EXISTS demandes_stage (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   id_utilisateur INTEGER NOT NULL REFERENCES utilisateurs(id) ON DELETE CASCADE,
   id_offre INTEGER NOT NULL REFERENCES offres_stage(id) ON DELETE CASCADE,
-  cv TEXT NOT NULL, lettre_motivation TEXT NOT NULL, convention TEXT,
+  cv TEXT NOT NULL, lettre_motivation TEXT NOT NULL, convention TEXT, message TEXT,
   statut TEXT NOT NULL DEFAULT 'en attente' CHECK (statut IN ('en attente','validée','refusée')),
   date_soumission TEXT DEFAULT CURRENT_TIMESTAMP,
   UNIQUE (id_utilisateur, id_offre)

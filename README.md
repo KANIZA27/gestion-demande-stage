@@ -14,8 +14,8 @@ Projet de **Kaniza SAINDOU**, réalisé à partir du cahier des charges de mon s
 
 | Pour qui | Ce qu'on peut faire |
 | --- | --- |
-| **Stagiaire** | Créer un compte (e-mail + mot de passe), modifier son profil (nom, prénom, téléphone, date de naissance, adresse), consulter les offres, candidater avec **CV, lettre de motivation et convention de stage** (PDF), suivre l'état de ses candidatures, recevoir des notifications, écrire aux gestionnaires. |
-| **Gestionnaire** | Tableau de bord, liste des candidatures filtrée par statut, fiche détaillée avec les pièces jointes, **validation ou refus** (le candidat est prévenu automatiquement), ajout / modification / suppression des offres, messagerie avec les candidats. |
+| **Stagiaire** | Créer un compte (e-mail + mot de passe), modifier son profil (nom, prénom, téléphone, date de naissance, adresse), consulter les offres (date de publication, date limite), **postuler** avec un message et ses documents : **CV, lettre de motivation et convention de stage** (PDF), suivre ses candidatures et ses documents, recevoir des notifications, écrire aux gestionnaires. |
+| **Gestionnaire** | Rubriques **Candidats, Candidatures, Agents, Documents**, tableau de bord, liste des candidatures filtrée par statut, fiche détaillée avec les pièces jointes, **validation ou refus** (le candidat est prévenu automatiquement), ajout / modification / suppression des offres, messagerie avec les candidats. |
 | **Administrateur** | Tout ce que fait le gestionnaire, plus la gestion des comptes et des **rôles**. |
 
 ## Sécurité
@@ -66,7 +66,7 @@ La base de démonstration est créée automatiquement au premier démarrage. Sur
 ```bash
 npm test
 ```
-10 tests (Jest + Supertest) : inscription, connexion, droits d'accès, dépôt de candidature avec pièces jointes, refus des fichiers non PDF, validation par le gestionnaire avec notification, protection des documents, publication d'une offre, messagerie.
+14 tests (Jest + Supertest) : inscription, connexion, droits d'accès, dépôt de candidature avec message et pièces jointes, refus des fichiers non PDF, date limite, validation par le gestionnaire avec notification, protection des documents, rubriques Candidats / Agents / Documents, retour à l'offre après connexion, publication d'une offre, messagerie.
 
 ## Organisation du code
 

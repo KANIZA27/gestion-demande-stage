@@ -32,13 +32,15 @@ module.exports = {
     let erreur = req.uploadErreur || null;
     if (!erreur && (!f.cv || !f.lettre_motivation)) erreur = "Le CV et la lettre de motivation sont obligatoires (format PDF).";
     if (!erreur && o.places_disponibles <= 0) erreur = "Il n'y a plus de place disponible pour cette offre.";
+    if (!erreur && o.date_limite && o.date_limite < new Date().toISOString().slice(0, 10)) erreur = "La date limite pour postuler à cette offre est dépassée.";
     if (!erreur && await db.get("SELECT id FROM demandes_stage WHERE id_utilisateur = ? AND id_offre = ?", [req.session.user.id, o.id])) {
       erreur = "Vous avez déjà candidaté à cette offre.";
     }
     if (erreur) { supprimerFichiers(f); return res.status(400).render("candidatures/form", { titre: "Candidater", o, erreur }); }
 
-    await db.run("INSERT INTO demandes_stage (id_utilisateur, id_offre, cv, lettre_motivation, convention) VALUES (?,?,?,?,?)",
-      [req.session.user.id, o.id, f.cv[0].filename, f.lettre_motivation[0].filename, f.convention ? f.convention[0].filename : null]);
+    const message = (req.body.message || "").trim().slice(0, 2000) || null;
+    await db.run("INSERT INTO demandes_stage (id_utilisateur, id_offre, cv, lettre_motivation, convention, message) VALUES (?,?,?,?,?,?)",
+      [req.session.user.id, o.id, f.cv[0].filename, f.lettre_motivation[0].filename, f.convention ? f.convention[0].filename : null, message]);
     await notifier(req.session.user.id, `Votre candidature « ${o.titre} » a bien été reçue. Elle est en attente de traitement.`);
     req.session.flash = "Votre candidature a bien été envoyée. Vous pouvez suivre son avancement ici.";
     res.redirect("/mes-candidatures");

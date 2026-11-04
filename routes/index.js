@@ -9,6 +9,7 @@ const cand = require("../controllers/candidatureController");
 const msg = require("../controllers/messageController");
 const admin = require("../controllers/adminController");
 const notif = require("../controllers/notificationController");
+const annuaire = require("../controllers/annuaireController");
 
 // Petite aide : transmet les erreurs des fonctions async à Express
 const a = (fn) => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
@@ -21,7 +22,7 @@ const pieces = (req, res, next) =>
   });
 
 // Pages publiques
-router.get("/", (req, res) => res.render("accueil", { titre: "Accueil" }));
+router.get("/", a(offre.home));
 router.get("/connexion", auth.showLogin);
 router.post("/connexion", a(auth.login));
 router.get("/inscription", auth.showRegister);
@@ -38,6 +39,7 @@ router.get("/messages", connecte, a(msg.index));
 router.get("/messages/:id", connecte, a(msg.conversation));
 router.post("/messages/:id", connecte, a(msg.send));
 router.get("/candidatures/:id/fichier/:champ", connecte, a(cand.fichier));
+router.get("/documents", connecte, a(annuaire.documents));
 
 // Stagiaire
 router.get("/offres/:id/candidater", role("stagiaire"), a(cand.showForm));
@@ -47,6 +49,8 @@ router.get("/mes-candidatures", role("stagiaire"), a(cand.mine));
 // Gestionnaire et admin
 const gestion = role("gestionnaire", "admin");
 router.get("/gestion", gestion, a(cand.dashboard));
+router.get("/candidats", gestion, a(annuaire.candidats));
+router.get("/agents", gestion, a(annuaire.agents));
 router.get("/gestion/candidatures", gestion, a(cand.list));
 router.get("/gestion/candidatures/:id", gestion, a(cand.detail));
 router.post("/gestion/candidatures/:id/statut", gestion, a(cand.changeStatut));

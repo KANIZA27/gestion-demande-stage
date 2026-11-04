@@ -1,0 +1,12 @@
+<article class="offre">
+  <h3><a href="/offres/<%= o.id %>"><%= o.titre %></a></h3>
+  <p>Description : <%= o.description.length > 140 ? o.description.slice(0, 140) + '…' : o.description %></p>
+  <p>Date publication : <%= date(o.date_publication) %></p>
+  <p>Date limite : <%= date(o.date_limite) %></p>
+  <p class="petit"><%= o.departement %> · <%= o.places_disponibles > 0 ? o.places_disponibles + ' place' + (o.places_disponibles > 1 ? 's' : '') + ' disponible' + (o.places_disponibles > 1 ? 's' : '') : 'complet' %></p>
+  <% if (user && user.role !== 'stagiaire') { %>
+    <a class="btn sm" href="/gestion/offres/<%= o.id %>/modifier">Modifier</a>
+  <% } else { %>
+    <a class="btn sm" href="/offres/<%= o.id %>/candidater">Postuler</a>
+  <% } %>
+</article>
