@@ -6,6 +6,8 @@ Projet de **Kaniza SAINDOU**, réalisé à partir du cahier des charges de mon s
 
 > **Version de démonstration** : les personnes, offres et candidatures sont des exemples. Les e-mails ne sont pas envoyés : ils sont écrits dans `logs/emails.log`.
 
+📄 [Cahier des charges (version corrigée)](docs/cahier-des-charges.md)
+
 ## Fonctionnalités
 
 | Pour qui | Ce qu'on peut faire |
@@ -33,8 +35,8 @@ Il faut **Node.js 22** ou plus récent.
 
 ```bash
 npm install
-npm run init-db   # crée la base de démonstration avec des exemples
-npm start         # http://localhost:3000
+npm start         # http://localhost:3000 (la base de démonstration se crée toute seule)
+npm run init-db   # pour remettre les exemples à zéro
 ```
 
 Comptes de démonstration :
@@ -46,6 +48,16 @@ Comptes de démonstration :
 | Administrateur | admin@demo.yt | Admin2026! |
 
 Pour utiliser MySQL : créer la base avec `database/schema.mysql.sql`, puis renseigner `DB_HOST`, `DB_USER`, `DB_PASSWORD` et `DB_NAME`.
+
+## Mettre en ligne (gratuit, sur Render)
+
+[![Déployer sur Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/KANIZA27/gestion-demande-stage)
+
+1. Cliquer sur le bouton ci-dessus et se connecter avec son compte GitHub.
+2. Valider : Render lit le fichier `render.yaml`, installe le projet et le démarre.
+3. Au bout de quelques minutes, le site est accessible à une adresse du type `https://gestion-demande-stage.onrender.com`.
+
+La base de démonstration est créée automatiquement au premier démarrage. Sur l'offre gratuite, le site se met en veille après un moment sans visite (le premier chargement prend alors environ une minute) et les données de test sont remises à zéro à chaque redémarrage.
 
 ## Tests
 

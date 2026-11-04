@@ -1,0 +1,13 @@
+# Mise en ligne sur Render (hébergement gratuit)
+services:
+  - type: web
+    name: gestion-demande-stage
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 22.22.0
+      - key: SESSION_SECRET
+        generateValue: true

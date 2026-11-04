@@ -10,6 +10,26 @@ async function init({ reset = true } = {}) {
   const db = require("../config/db");
   db.exec(fs.readFileSync(path.join(__dirname, "schema.sqlite.sql"), "utf8"));
 
+  // Petits PDF d'exemple pour les candidatures de démonstration
+  const up = path.join(__dirname, "..", "uploads");
+  fs.mkdirSync(up, { recursive: true });
+  const pdf = (titre) => {
+    const txt = `BT /F1 20 Tf 60 760 Td (${titre}) Tj 0 -30 Td /F1 12 Tf (Document d'exemple - Plateforme de Kaniza SAINDOU) Tj ET`;
+    const objs = ["<< /Type /Catalog /Pages 2 0 R >>", "<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+      "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>",
+      `<< /Length ${txt.length} >>\nstream\n${txt}\nendstream`, "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>"];
+    let out = "%PDF-1.4\n"; const pos = [];
+    objs.forEach((o, i) => { pos.push(out.length); out += `${i + 1} 0 obj\n${o}\nendobj\n`; });
+    const x = out.length;
+    out += `xref\n0 ${objs.length + 1}\n0000000000 65535 f \n` + pos.map((p) => String(p).padStart(10, "0") + " 00000 n \n").join("");
+    return out + `trailer\n<< /Size ${objs.length + 1} /Root 1 0 R >>\nstartxref\n${x}\n%%EOF`;
+  };
+  if (file !== ":memory:") {
+    fs.writeFileSync(path.join(up, "exemple-cv.pdf"), pdf("CV - exemple"));
+    fs.writeFileSync(path.join(up, "exemple-lettre.pdf"), pdf("Lettre de motivation - exemple"));
+    fs.writeFileSync(path.join(up, "exemple-convention.pdf"), pdf("Convention de stage - exemple"));
+  }
+
   const hash = (p) => bcrypt.hashSync(p, 10);
   const users = [
     ["Admin", "Plateforme", "admin@demo.yt", hash("Admin2026!"), "admin", null, null, null],
