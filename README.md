@@ -6,6 +6,8 @@ Projet de **Kaniza SAINDOU**, réalisé à partir du cahier des charges de mon s
 
 > **Version de démonstration** : les personnes, offres et candidatures sont des exemples. Les e-mails ne sont pas envoyés : ils sont écrits dans `logs/emails.log`.
 
+🔗 **Version d'essai en ligne : https://kaniza27.github.io/gestion-demande-stage/**
+
 📄 [Cahier des charges (version corrigée)](docs/cahier-des-charges.md)
 
 ## Fonctionnalités
