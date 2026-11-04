@@ -78,7 +78,9 @@ input,select,textarea{font:inherit;font-size:14px;padding:10px 12px;border:1px s
 input[type=file]{padding:8px}
 input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--teal);outline-offset:1px}
 .hint{font-weight:400;color:var(--mut);font-size:12.5px}
-.accounts{display:grid;gap:8px;margin-top:6px}
+.accounts{display:grid;gap:8px;margin-top:10px}
+.form.demobox{border:2px dashed var(--line);border-radius:12px;padding:14px;margin:22px auto 0}
+.demobox h3{font-size:14px;margin:0 0 2px}
 .acc{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-align:left;color:var(--ink);width:100%}
 .acc b{color:var(--title)} .acc small{color:var(--mut);display:block;font-size:12px}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:6px 0 22px}
@@ -226,9 +228,10 @@ const V = {
       <form id="f-login"><label>E-mail<input id="l-email" type="email" required autocomplete="username"></label>
       <label>Mot de passe<input id="l-mdp" type="password" required autocomplete="current-password"></label>
       <button class="btn" style="width:100%">Se connecter</button></form>
-      <p class="hint" style="margin:18px 0 4px">Comptes d'essai : touchez-en un pour vous connecter.</p>
-      <div class="accounts">${acc.map(([i, r]) => { const u = U(i); return u ? `<button class="acc" data-act="quick" data-id="${i}"><span><b>${r}</b><small>${esc(u.email)} · ${esc(u.mdp)}</small></span><span class="tag">Entrer</span></button>` : ""; }).join("")}</div>
-      <p class="hint" style="margin-top:16px">Pas encore de compte ? <a data-go="inscription">Créer un compte</a></p></div>`;
+      <p class="hint" style="margin-top:14px">Pas encore de compte ? <a data-go="inscription">Créer un compte</a></p>
+      <p class="hint" style="margin-top:6px">Stagiaires, gestionnaires et administrateurs se connectent ici : la plateforme ouvre le bon espace selon le compte.</p></div>
+      <div class="form small demobox"><h3>Pour tester la démonstration</h3><p class="hint" style="margin:0">Ces raccourcis n'existent que dans la version d'essai. Touchez un rôle pour entrer directement.</p>
+      <div class="accounts">${acc.map(([i, r]) => { const u = U(i); return u ? `<button class="acc" data-act="quick" data-id="${i}"><span><b>${r}</b><small>${esc(u.email)} · ${esc(u.mdp)}</small></span><span class="tag">Entrer</span></button>` : ""; }).join("")}</div></div>`;
   },
   inscription() {
     return `<div class="form small"><h1 class="ptitle">Créer un compte</h1><p class="sub">Votre adresse e-mail sera votre identifiant.</p>
