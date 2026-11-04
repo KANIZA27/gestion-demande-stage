@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title><%= titre %> — Stages au Département</title>
+<link rel="stylesheet" href="/css/style.css">
+</head><body>
+<header class="top"><div class="wrap bar">
+  <a href="/" class="logo">Stages<span>976</span></a>
+  <nav>
+    <a href="/offres" class="<%= chemin.startsWith('/offres') ? 'on' : '' %>">Offres</a>
+    <% if (!user) { %>
+      <a href="/connexion">Connexion</a>
+      <a href="/inscription" class="cta">Créer un compte</a>
+    <% } else { %>
+      <% if (user.role === 'stagiaire') { %><a href="/mes-candidatures" class="<%= chemin === '/mes-candidatures' ? 'on' : '' %>">Mes candidatures</a><% } %>
+      <% if (user.role !== 'stagiaire') { %>
+        <a href="/gestion" class="<%= chemin === '/gestion' ? 'on' : '' %>">Tableau de bord</a>
+        <a href="/gestion/candidatures" class="<%= chemin.startsWith('/gestion/candidatures') ? 'on' : '' %>">Candidatures</a>
+        <a href="/gestion/offres" class="<%= chemin.startsWith('/gestion/offres') ? 'on' : '' %>">Gérer les offres</a>
+      <% } %>
+      <% if (user.role === 'admin') { %><a href="/admin/utilisateurs" class="<%= chemin.startsWith('/admin') ? 'on' : '' %>">Utilisateurs</a><% } %>
+      <a href="/messages" class="<%= chemin.startsWith('/messages') ? 'on' : '' %>">Messages<% if (nbMessages) { %> <span class="pill"><%= nbMessages %></span><% } %></a>
+      <a href="/notifications" class="<%= chemin === '/notifications' ? 'on' : '' %>" aria-label="Notifications">🔔<% if (nbNotifs) { %> <span class="pill"><%= nbNotifs %></span><% } %></a>
+      <a href="/profil" class="me"><%= user.prenom %></a>
+      <form method="post" action="/deconnexion" class="inline"><button class="linkbtn">Déconnexion</button></form>
+    <% } %>
+  </nav>
+</div></header>
+<main class="wrap">
+<% if (flash) { %><p class="alert ok"><%= flash %></p><% } %>

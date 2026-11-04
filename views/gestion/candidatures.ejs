@@ -1,0 +1,22 @@
+<%- include('../partials/header') %>
+<div class="headrow">
+  <div><h1 class="ptitle">Candidatures</h1><p class="sub"><%= demandes.length %> candidature<%= demandes.length > 1 ? 's' : '' %><%= statut ? ' · ' + statut : '' %></p></div>
+  <div class="tabs">
+    <a href="/gestion/candidatures" class="<%= !statut ? 'on' : '' %>">Toutes</a>
+    <% STATUTS.forEach(s => { %><a href="/gestion/candidatures?statut=<%= s %>" class="<%= statut === s ? 'on' : '' %>"><%= s.charAt(0).toUpperCase() + s.slice(1) %></a><% }) %>
+  </div>
+</div>
+<div class="tablewrap"><table>
+  <thead><tr><th>Candidat·e</th><th>Offre</th><th>Service</th><th>Reçue le</th><th>Statut</th><th></th></tr></thead>
+  <tbody>
+  <% if (!demandes.length) { %><tr><td colspan="6" class="empty">Aucune candidature.</td></tr><% } %>
+  <% demandes.forEach(d => { %>
+    <tr>
+      <td><b><%= d.prenom %> <%= d.nom %></b><br><small><%= d.email %></small></td>
+      <td><%= d.titre %></td><td><%= d.departement %></td><td><%= date(d.date_soumission) %></td>
+      <td><%- badge(d.statut) %></td><td><a class="btn sm" href="/gestion/candidatures/<%= d.id %>">Traiter</a></td>
+    </tr>
+  <% }) %>
+  </tbody>
+</table></div>
+<%- include('../partials/footer') %>

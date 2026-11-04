@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>
+<p class="crumb"><a href="/offres">← Toutes les offres</a></p>
+<section class="panel">
+  <span class="dept"><%= o.departement %></span>
+  <h1><%= o.titre %></h1>
+  <div class="facts">
+    <div><small>Début</small><b><%= date(o.date_debut) %></b></div>
+    <div><small>Fin</small><b><%= date(o.date_fin) %></b></div>
+    <div><small>Places disponibles</small><b><%= o.places_disponibles %></b></div>
+  </div>
+  <h3>Description</h3>
+  <p class="text"><%= o.description %></p>
+  <div class="row">
+  <% if (!user) { %>
+    <a class="btn" href="/connexion">Se connecter pour candidater</a>
+  <% } else if (user.role === 'stagiaire') { %>
+    <% if (dejaCandidat) { %><span class="badge ok">Vous avez déjà candidaté</span> <a href="/mes-candidatures">Suivre ma candidature</a>
+    <% } else if (o.places_disponibles <= 0) { %><span class="badge no">Offre complète</span>
+    <% } else { %><a class="btn" href="/offres/<%= o.id %>/candidater">Candidater à cette offre</a><% } %>
+  <% } else { %>
+    <a class="btn ghost" href="/gestion/offres/<%= o.id %>/modifier">Modifier l'offre</a>
+  <% } %>
+  </div>
+</section>
+<%- include('../partials/footer') %>

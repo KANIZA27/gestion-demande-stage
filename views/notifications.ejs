@@ -1,0 +1,10 @@
+<%- include('partials/header') %>
+<h1 class="ptitle">Notifications</h1>
+<p class="sub">Les mises à jour de vos demandes. Une copie vous est aussi envoyée par e-mail.</p>
+<% if (!notifs.length) { %><p class="empty">Aucune notification pour le moment.</p><% } %>
+<ul class="notifs">
+<% notifs.forEach(n => { %>
+  <li class="<%= n.lu ? '' : 'new' %>"><span><%= n.message %></span><small><%= date(n.date_creation) %></small></li>
+<% }) %>
+</ul>
+<%- include('partials/footer') %>

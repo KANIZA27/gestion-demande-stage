@@ -1,0 +1,29 @@
+{
+  "name": "gestion-demande-stage",
+  "version": "1.0.0",
+  "description": "Plateforme de gestion des demandes de stage — Kaniza SAINDOU",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "init-db": "node database/init.js",
+    "test": "NODE_ENV=test DB_FILE=:memory: jest --runInBand"
+  },
+  "keywords": [],
+  "author": "Kaniza SAINDOU",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.11.5"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}

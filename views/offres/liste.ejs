@@ -1,0 +1,26 @@
+<%- include('../partials/header') %>
+<div class="headrow">
+  <div><h1 class="ptitle">Offres de stage</h1><p class="sub">Les stages proposés par les services du Département.</p></div>
+  <form method="get" action="/offres" class="filter">
+    <label class="sr" for="service">Service</label>
+    <select id="service" name="service" onchange="this.form.submit()">
+      <option value="">Tous les services</option>
+      <% services.forEach(s => { %><option <%= s === service ? 'selected' : '' %>><%= s %></option><% }) %>
+    </select>
+  </form>
+</div>
+<% if (!offres.length) { %><p class="empty">Aucune offre pour le moment.</p><% } %>
+<div class="offres">
+<% offres.forEach(o => { %>
+  <article class="offre">
+    <span class="dept"><%= o.departement %></span>
+    <h2><a href="/offres/<%= o.id %>"><%= o.titre %></a></h2>
+    <p><%= o.description.length > 130 ? o.description.slice(0, 130) + '…' : o.description %></p>
+    <div class="meta">
+      <span>📅 <%= date(o.date_debut) %> → <%= date(o.date_fin) %></span>
+      <span class="<%= o.places_disponibles > 0 ? 'places' : 'places none' %>"><%= o.places_disponibles > 0 ? o.places_disponibles + ' place' + (o.places_disponibles > 1 ? 's' : '') : 'Complet' %></span>
+    </div>
+  </article>
+<% }) %>
+</div>
+<%- include('../partials/footer') %>

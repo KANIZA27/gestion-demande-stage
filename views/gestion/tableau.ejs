@@ -1,0 +1,19 @@
+<%- include('../partials/header') %>
+<h1 class="ptitle">Tableau de bord</h1>
+<p class="sub">Bonjour <%= user.prenom %>, voici l'état des demandes de stage.</p>
+<div class="stats">
+  <div class="stat"><b><%= stats.total %></b><span>Candidatures reçues</span></div>
+  <a class="stat att" href="/gestion/candidatures?statut=en attente"><b><%= stats.attente %></b><span>En attente de traitement</span></a>
+  <div class="stat ok"><b><%= stats.validees %></b><span>Validées</span></div>
+  <div class="stat"><b><%= stats.offres %></b><span>Offres publiées</span></div>
+</div>
+<div class="headrow"><h2 class="h2">Dernières candidatures</h2><a href="/gestion/candidatures">Tout voir →</a></div>
+<div class="tablewrap"><table>
+  <thead><tr><th>Candidat·e</th><th>Offre</th><th>Reçue le</th><th>Statut</th><th></th></tr></thead>
+  <tbody>
+  <% recentes.forEach(d => { %>
+    <tr><td><b><%= d.prenom %> <%= d.nom %></b></td><td><%= d.titre %></td><td><%= date(d.date_soumission) %></td><td><%- badge(d.statut) %></td><td><a href="/gestion/candidatures/<%= d.id %>">Ouvrir</a></td></tr>
+  <% }) %>
+  </tbody>
+</table></div>
+<%- include('../partials/footer') %>

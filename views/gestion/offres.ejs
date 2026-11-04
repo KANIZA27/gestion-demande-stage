@@ -1,0 +1,21 @@
+<%- include('../partials/header') %>
+<div class="headrow">
+  <div><h1 class="ptitle">Gérer les offres</h1><p class="sub">Ajoutez, modifiez ou supprimez les offres de stage.</p></div>
+  <a class="btn" href="/gestion/offres/nouvelle">+ Nouvelle offre</a>
+</div>
+<div class="tablewrap"><table>
+  <thead><tr><th>Offre</th><th>Service</th><th>Période</th><th>Places</th><th>Candidatures</th><th></th></tr></thead>
+  <tbody>
+  <% offres.forEach(o => { %>
+    <tr>
+      <td><b><%= o.titre %></b></td><td><%= o.departement %></td>
+      <td><%= date(o.date_debut) %> → <%= date(o.date_fin) %></td><td><%= o.places_disponibles %></td><td><%= o.nb_candidatures %></td>
+      <td class="actions">
+        <a href="/gestion/offres/<%= o.id %>/modifier">Modifier</a>
+        <form method="post" action="/gestion/offres/<%= o.id %>/supprimer" class="inline" onsubmit="return confirm('Supprimer cette offre et ses candidatures ?')"><button class="linkbtn danger">Supprimer</button></form>
+      </td>
+    </tr>
+  <% }) %>
+  </tbody>
+</table></div>
+<%- include('../partials/footer') %>

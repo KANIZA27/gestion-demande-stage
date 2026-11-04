@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+<h1 class="ptitle">Utilisateurs</h1>
+<p class="sub">Gestion des comptes et des rôles. Les inscriptions publiques créent des comptes « stagiaire ».</p>
+<div class="tablewrap"><table>
+  <thead><tr><th>Nom</th><th>E-mail</th><th>Inscrit le</th><th>Rôle</th></tr></thead>
+  <tbody>
+  <% users.forEach(u => { %>
+    <tr><td><b><%= u.prenom %> <%= u.nom %></b></td><td><%= u.email %></td><td><%= date(u.date_creation) %></td>
+      <td><% if (u.id === user.id) { %><span class="role"><%= u.role %></span> <small>(vous)</small><% } else { %>
+        <form method="post" action="/admin/utilisateurs/<%= u.id %>/role" class="inline">
+          <select name="role" onchange="this.form.submit()" aria-label="Rôle de <%= u.prenom %>">
+            <% ROLES.forEach(r => { %><option <%= u.role === r ? 'selected' : '' %>><%= r %></option><% }) %>
+          </select></form><% } %></td></tr>
+  <% }) %>
+  </tbody>
+</table></div>
+<%- include('../partials/footer') %>

@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+<p class="crumb"><a href="/messages">← Messagerie</a></p>
+<section class="panel chat">
+  <h1><%= autre.prenom %> <%= autre.nom %> <small class="role"><%= autre.role %></small></h1>
+  <div class="bubbles">
+    <% if (!messages.length) { %><p class="empty">Commencez la conversation.</p><% } %>
+    <% messages.forEach(m => { %>
+      <div class="bubble <%= m.id_expediteur === user.id ? 'me' : '' %>"><p><%= m.contenu %></p><small><%= date(m.date_envoi) %></small></div>
+    <% }) %>
+  </div>
+  <form method="post" action="/messages/<%= autre.id %>" class="send">
+    <label class="sr" for="contenu">Votre message</label>
+    <textarea id="contenu" name="contenu" rows="2" placeholder="Écrire un message…" required></textarea>
+    <button class="btn" type="submit">Envoyer</button>
+  </form>
+</section>
+<%- include('../partials/footer') %>

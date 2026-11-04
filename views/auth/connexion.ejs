@@ -1,0 +1,16 @@
+<%- include('../partials/header') %>
+<section class="panel narrow">
+  <h1>Connexion</h1>
+  <p class="sub">Accédez à votre espace pour suivre vos demandes.</p>
+  <% if (erreur) { %><p class="alert err"><%= erreur %></p><% } %>
+  <form method="post" action="/connexion" class="form">
+    <label>Adresse e-mail<input type="email" name="email" value="<%= email %>" required autocomplete="username"></label>
+    <label>Mot de passe<input type="password" name="mot_de_passe" required autocomplete="current-password"></label>
+    <button class="btn full" type="submit">Se connecter</button>
+  </form>
+  <p class="small">Pas encore de compte ? <a href="/inscription">Créer un compte</a></p>
+  <details class="demo"><summary>Comptes de démonstration</summary>
+    <p>Stagiaire : fatima@demo.yt / Stagiaire2026!<br>Gestionnaire : gestion@demo.yt / Gestion2026!<br>Admin : admin@demo.yt / Admin2026!</p>
+  </details>
+</section>
+<%- include('../partials/footer') %>

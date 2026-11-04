@@ -1,0 +1,14 @@
+<%- include('../partials/header') %>
+<h1 class="ptitle">Messagerie</h1>
+<p class="sub"><%= user.role === 'stagiaire' ? 'Échangez avec les gestionnaires des stages.' : 'Vos échanges avec les candidats.' %></p>
+<% if (!contacts.length) { %><p class="empty">Aucune conversation pour le moment.</p><% } %>
+<ul class="convs">
+<% contacts.forEach(c => { %>
+  <li><a href="/messages/<%= c.id %>">
+    <span class="av"><%= c.prenom.charAt(0) %><%= c.nom.charAt(0) %></span>
+    <span class="who"><b><%= c.prenom %> <%= c.nom %></b><small><%= c.dernier ? (c.dernier.length > 70 ? c.dernier.slice(0,70) + '…' : c.dernier) : (c.role === 'gestionnaire' ? 'Gestionnaire des stages' : '') %></small></span>
+    <% if (c.non_lus) { %><span class="pill"><%= c.non_lus %></span><% } %>
+  </a></li>
+<% }) %>
+</ul>
+<%- include('../partials/footer') %>

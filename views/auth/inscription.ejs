@@ -1,0 +1,20 @@
+<%- include('../partials/header') %>
+<section class="panel narrow wide">
+  <h1>Créer un compte</h1>
+  <p class="sub">Les champs marqués d'un astérisque (*) sont obligatoires.</p>
+  <% if (erreur) { %><p class="alert err"><%= erreur %></p><% } %>
+  <form method="post" action="/inscription" class="form">
+    <div class="grid">
+      <label>Nom *<input name="nom" value="<%= valeurs.nom || '' %>" required></label>
+      <label>Prénom *<input name="prenom" value="<%= valeurs.prenom || '' %>" required></label>
+      <label>Adresse e-mail * <small>(votre identifiant)</small><input type="email" name="email" value="<%= valeurs.email || '' %>" required></label>
+      <label>Téléphone<input name="telephone" value="<%= valeurs.telephone || '' %>"></label>
+      <label>Date de naissance<input type="date" name="date_naissance" value="<%= valeurs.date_naissance || '' %>"></label>
+      <label>Adresse<input name="adresse" value="<%= valeurs.adresse || '' %>"></label>
+      <label>Mot de passe * <small>(8 caractères minimum)</small><input type="password" name="mot_de_passe" minlength="8" required autocomplete="new-password"></label>
+      <label>Confirmer le mot de passe *<input type="password" name="confirmation" minlength="8" required autocomplete="new-password"></label>
+    </div>
+    <button class="btn" type="submit">Créer mon compte</button>
+  </form>
+</section>
+<%- include('../partials/footer') %>

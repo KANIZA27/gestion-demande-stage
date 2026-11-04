@@ -1,0 +1,21 @@
+<%- include('../partials/header') %>
+<h1 class="ptitle">Mes candidatures</h1>
+<p class="sub">Suivez l'état de vos demandes de stage en temps réel.</p>
+<% if (!demandes.length) { %><p class="empty">Vous n'avez pas encore candidaté. <a href="/offres">Voir les offres</a></p><% } %>
+<div class="suivi">
+<% demandes.forEach(d => { const i = ['en attente','validée','refusée'].indexOf(d.statut); %>
+  <article class="suivi-item">
+    <div class="suivi-head">
+      <div><span class="dept"><%= d.departement %></span><h2><%= d.titre %></h2><small>Envoyée le <%= date(d.date_soumission) %> · stage du <%= date(d.date_debut) %> au <%= date(d.date_fin) %></small></div>
+      <%- badge(d.statut) %>
+    </div>
+    <ol class="track">
+      <li class="done">Candidature envoyée</li>
+      <li class="done">En cours d'examen</li>
+      <li class="<%= d.statut === 'validée' ? 'done ok' : d.statut === 'refusée' ? 'done no' : '' %>"><%= d.statut === 'refusée' ? 'Refusée' : d.statut === 'validée' ? 'Validée' : 'Réponse du service' %></li>
+    </ol>
+    <p class="docs">Documents : <a href="/candidatures/<%= d.id %>/fichier/cv">CV</a> · <a href="/candidatures/<%= d.id %>/fichier/lettre_motivation">Lettre de motivation</a><% if (d.convention) { %> · <a href="/candidatures/<%= d.id %>/fichier/convention">Convention</a><% } %></p>
+  </article>
+<% }) %>
+</div>
+<%- include('../partials/footer') %>
